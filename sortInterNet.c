@@ -1,22 +1,18 @@
+/*
+ * @Author: zyw zhangyuanwei1130@163.com
+ * @Date: 2024-03-13 15:24:11
+ * @LastEditors: zyw zhangyuanwei1130@163.com
+ * @LastEditTime: 2024-03-15 19:52:01
+ * @FilePath: /Single-file-upload/sortInterNet.c
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 #include <stdio.h>
 #include <string.h>
 int sortBubble(char *a, int num);
 int sortChose(char *a, int num);
 
 void swap(char *a, char *b);
-
-int temp()
-{
-    char string[10], str1[10];
-    int i;
-    for (i = 0; i < 10; i++)
-    {
-        str1[i] = 'a';
-
-    }
-    strcpy(string, str1);
-    printf("%s\n", string);
-}
+int FindSecMax(int Data[], int Count); //找出整数数组中第二小的整数
 int main(int argc, char const *argv[])
 {
     char a[10] = "145326978"; // 数字的ASCII字符形式是eof
@@ -66,6 +62,7 @@ int sortChose(char *a, int num)
     }
     printf("%s\n", a);
 }
+//-----------------------------------------------------------------------------
 // 快速排序主函数
 int sortQuick(char *a, int num)
 {
@@ -78,4 +75,21 @@ void swap(char *a, char *b)
     char t = *a;
     *a = *b;
     *b = t;
+}
+//------------------------------------------------------------------------
+
+int FindSecMax(int Data[], int Count) {
+    int max = Data[0]; // 假设第一个元素为最大值
+    int secMax = 0; // 初始化第二大值为最小整数
+
+    for (int i = 1; i < Count; i++) {
+        if (Data[i] > max) {
+            secMax = max; // 将当前的最大值更新为第二大值
+            max = Data[i]; // 更新最大值
+        } else if (Data[i] > secMax && Data[i] < max) {
+            secMax = Data[i]; // 更新第二大值
+        }
+    }
+
+    return secMax;
 }
